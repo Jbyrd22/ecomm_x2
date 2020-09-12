@@ -48,7 +48,7 @@ class UsersRepository {
 
 const test = async () => {
 	const repo = new UsersRepository('users.json');
-	await repo.delete('678ef4b0');
+	await repo.delete('52cb9ee4');
 };
 
 test();
