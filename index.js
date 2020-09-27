@@ -12,7 +12,7 @@ app.use(
 	})
 );
 
-app.get('/', (req, res) => {
+app.get('/signup', (req, res) => {
 	res.send(`
 		<div>
 			<form method="POST">
@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 	`);
 });
 
-app.post('/', async (req, res) => {
+app.post('/signup', async (req, res) => {
 	const { email, password, passwordConfirmation } = req.body;
 	const foundUser = await usersRepo.getOneby({ email });
 	if (foundUser) {
@@ -37,6 +37,36 @@ app.post('/', async (req, res) => {
 	const user = await usersRepo.create({ email, password });
 	req.session.userId = user.id;
 	res.send('Account Created!');
+});
+
+app.get('/signout', (req, res) => {
+	req.session = null;
+	res.send('you are signed out');
+});
+
+app.get('/signin', (req, res) => {
+	res.send(`
+		<div>
+			<form method="POST">
+				<input name="email" placeholder="email" />				
+				<input name="password" placeholder="password" />				
+				<button>Sign In</button>
+			</form>		
+		</div>
+	`);
+});
+
+app.post('/signin', async (req, res) => {
+	const { email, password } = req.body;
+	const foundUser = await usersRepo.getOneby({ email });
+	if (!foundUser) {
+		return res.send("That email doesn't exist in our database.");
+	}
+	if (password !== foundUser.password) {
+		return res.send('You have entered an incorrect password!');
+	}
+	req.session.userId = foundUser.id;
+	res.send(`You are signed in as ${foundUser.email}`);
 });
 
 app.listen(3000, () => {
