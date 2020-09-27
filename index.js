@@ -1,9 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieSession = require('cookie-session');
+const usersRepo = require('./repositories/users');
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+	cookieSession({
+		keys : [ 'devildogs' ]
+	})
+);
 
 app.get('/', (req, res) => {
 	res.send(`
@@ -18,9 +25,18 @@ app.get('/', (req, res) => {
 	`);
 });
 
-app.post('/', (req, res) => {
-	console.log(req.body);
-	res.send('Account created!1');
+app.post('/', async (req, res) => {
+	const { email, password, passwordConfirmation } = req.body;
+	const foundUser = await usersRepo.getOneby({ email });
+	if (foundUser) {
+		return res.send('Email is already in use.');
+	}
+	if (password !== passwordConfirmation) {
+		return res.send('Passwords do not match!');
+	}
+	const user = await usersRepo.create({ email, password });
+	req.session.userId = user.id;
+	res.send('Account Created!');
 });
 
 app.listen(3000, () => {
