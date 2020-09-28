@@ -1,7 +1,17 @@
 [
-	{
-		"email": "jason_crask@yahoo.com",
-		"password": "748e396e985b77c6ee134c3825ed52f84282b9e73017c7e1f3e192e687668b447e922f37fa1fb265785be13e73b4a7eae17b93f5943611d766f9b561143fff23.590c925968e432cb",
-		"id": "eba041c3"
-	}
+  {
+    "email": "jason_crask@yahoo.com",
+    "password": "748e396e985b77c6ee134c3825ed52f84282b9e73017c7e1f3e192e687668b447e922f37fa1fb265785be13e73b4a7eae17b93f5943611d766f9b561143fff23.590c925968e432cb",
+    "id": "eba041c3"
+  },
+  {
+    "email": "jackjohnson@hotmail.com",
+    "password": "d8c6023de5c44cc3a8201193b385965c53abba2f7241453e6756800ef2aec864ff14f4efc38c85a1604bd313480c5178b751e597ab076b74beb1a5544d57ed2a.01dd378ab5816480",
+    "id": "3c477425"
+  },
+  {
+    "email": "testing1@email.com",
+    "password": "651cbc53e50e9062b124fe717476e90226bbaff13f972753a1e397a3b3f5880f93e90a0cfcb5530608468d864724f1376605dbb65437061d42a3d7359772d883.62846ef824680521",
+    "id": "a20ce4b0"
+  }
 ]
